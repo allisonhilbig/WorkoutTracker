@@ -46,5 +46,58 @@ namespace WorkoutTracker
                 //Generate new window with table of all exercises from the workout
             }
         }
+
+
+        //These Click functions could probably be streamlined into 
+        //One function and a parameter with the field level
+        // and a parameter with whether its + or − 
+        private void addField1_Click(object sender, EventArgs e)
+        {
+            addField1.Visible = false;
+            removeField1.Visible = true;
+            addField2.Visible = true;
+            category1.Visible = true;
+            value1.Visible = true;
+        }
+
+        private void addField2_Click(object sender, EventArgs e)
+        {
+            removeField1.Visible = false;
+            addField2.Visible = false;
+            removeField2.Visible = true;
+            addField3.Visible = true;
+            category2.Visible = true;
+            value2.Visible = true;
+        }
+
+        private void addField3_Click(object sender, EventArgs e)
+        {
+            removeField2.Visible = false;
+            addField3.Visible = false;
+            removeField3.Visible = true;
+            addField4.Visible = true;
+            category3.Visible = true;
+            value3.Visible = true;
+        }
+
+        private void addField4_Click(object sender, EventArgs e)
+        {
+            removeField3.Visible = false;
+            addField4.Visible = false;
+            removeField4.Visible = true;
+            category4.Visible = true;
+            value4.Visible = true;
+        }
+
+        private void removeField1_Click(object sender, EventArgs e)
+        {
+            removeField1.Visible = false;
+            addField2.Visible = false;
+            addField1.Visible = true;
+            category1.Clear();
+            category1.Visible = false;
+            value1.Clear();
+            value1.Visible = false;
+        }
     }
 }
