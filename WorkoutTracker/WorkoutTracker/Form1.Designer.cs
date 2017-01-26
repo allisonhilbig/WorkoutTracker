@@ -115,13 +115,15 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            " ",
             "Running",
             "Lunges (Stationary)",
             "Russian Twists"});
             this.comboBox1.Location = new System.Drawing.Point(400, 115);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(268, 33);
-            this.comboBox1.TabIndex = 22;
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // backButton
             // 
@@ -130,7 +132,7 @@
             this.backButton.Margin = new System.Windows.Forms.Padding(16);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(100, 35);
-            this.backButton.TabIndex = 23;
+            this.backButton.TabIndex = 14;
             this.backButton.Text = "<< Back";
             this.backButton.UseVisualStyleBackColor = true;
             // 
@@ -141,9 +143,10 @@
             this.nextButton.Margin = new System.Windows.Forms.Padding(16);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(100, 35);
-            this.nextButton.TabIndex = 24;
+            this.nextButton.TabIndex = 13;
             this.nextButton.Text = "Next >>";
             this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
             // finishButton
             // 
@@ -153,7 +156,7 @@
             this.finishButton.Margin = new System.Windows.Forms.Padding(16);
             this.finishButton.Name = "finishButton";
             this.finishButton.Size = new System.Drawing.Size(166, 35);
-            this.finishButton.TabIndex = 25;
+            this.finishButton.TabIndex = 15;
             this.finishButton.Text = "Finish Workout";
             this.finishButton.UseVisualStyleBackColor = true;
             this.finishButton.Click += new System.EventHandler(this.finishButton_Click);
@@ -166,7 +169,7 @@
             this.deleteButton.Margin = new System.Windows.Forms.Padding(16);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(170, 35);
-            this.deleteButton.TabIndex = 26;
+            this.deleteButton.TabIndex = 16;
             this.deleteButton.Text = "Delete Workout";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
@@ -176,7 +179,7 @@
             this.value1.Location = new System.Drawing.Point(400, 175);
             this.value1.Name = "value1";
             this.value1.Size = new System.Drawing.Size(268, 31);
-            this.value1.TabIndex = 28;
+            this.value1.TabIndex = 3;
             this.value1.Visible = false;
             // 
             // value2
@@ -184,7 +187,7 @@
             this.value2.Location = new System.Drawing.Point(400, 235);
             this.value2.Name = "value2";
             this.value2.Size = new System.Drawing.Size(268, 31);
-            this.value2.TabIndex = 30;
+            this.value2.TabIndex = 6;
             this.value2.Visible = false;
             // 
             // value3
@@ -192,7 +195,7 @@
             this.value3.Location = new System.Drawing.Point(400, 295);
             this.value3.Name = "value3";
             this.value3.Size = new System.Drawing.Size(268, 31);
-            this.value3.TabIndex = 32;
+            this.value3.TabIndex = 9;
             this.value3.Visible = false;
             // 
             // addField2
@@ -236,7 +239,7 @@
             this.category1.Location = new System.Drawing.Point(115, 175);
             this.category1.Name = "category1";
             this.category1.Size = new System.Drawing.Size(203, 31);
-            this.category1.TabIndex = 35;
+            this.category1.TabIndex = 2;
             this.category1.Visible = false;
             // 
             // category2
@@ -244,7 +247,7 @@
             this.category2.Location = new System.Drawing.Point(115, 235);
             this.category2.Name = "category2";
             this.category2.Size = new System.Drawing.Size(203, 31);
-            this.category2.TabIndex = 36;
+            this.category2.TabIndex = 5;
             this.category2.Visible = false;
             // 
             // category3
@@ -252,7 +255,7 @@
             this.category3.Location = new System.Drawing.Point(115, 295);
             this.category3.Name = "category3";
             this.category3.Size = new System.Drawing.Size(203, 31);
-            this.category3.TabIndex = 37;
+            this.category3.TabIndex = 8;
             this.category3.Visible = false;
             // 
             // category4
@@ -260,7 +263,7 @@
             this.category4.Location = new System.Drawing.Point(115, 355);
             this.category4.Name = "category4";
             this.category4.Size = new System.Drawing.Size(203, 31);
-            this.category4.TabIndex = 39;
+            this.category4.TabIndex = 11;
             this.category4.Visible = false;
             // 
             // value4
@@ -268,7 +271,7 @@
             this.value4.Location = new System.Drawing.Point(400, 355);
             this.value4.Name = "value4";
             this.value4.Size = new System.Drawing.Size(268, 31);
-            this.value4.TabIndex = 38;
+            this.value4.TabIndex = 12;
             this.value4.Visible = false;
             // 
             // addField4
@@ -298,10 +301,10 @@
             this.removeField1.FlatAppearance.BorderSize = 0;
             this.removeField1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeField1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeField1.Location = new System.Drawing.Point(45, 152);
+            this.removeField1.Location = new System.Drawing.Point(45, 145);
             this.removeField1.Name = "removeField1";
             this.removeField1.Size = new System.Drawing.Size(57, 61);
-            this.removeField1.TabIndex = 41;
+            this.removeField1.TabIndex = 1;
             this.removeField1.Text = "−";
             this.removeField1.UseVisualStyleBackColor = false;
             this.removeField1.Visible = false;
@@ -319,10 +322,11 @@
             this.removeField2.Location = new System.Drawing.Point(45, 212);
             this.removeField2.Name = "removeField2";
             this.removeField2.Size = new System.Drawing.Size(57, 61);
-            this.removeField2.TabIndex = 42;
+            this.removeField2.TabIndex = 4;
             this.removeField2.Text = "−";
             this.removeField2.UseVisualStyleBackColor = false;
             this.removeField2.Visible = false;
+            this.removeField2.Click += new System.EventHandler(this.removeField2_Click);
             // 
             // removeField3
             // 
@@ -336,10 +340,11 @@
             this.removeField3.Location = new System.Drawing.Point(45, 272);
             this.removeField3.Name = "removeField3";
             this.removeField3.Size = new System.Drawing.Size(57, 61);
-            this.removeField3.TabIndex = 43;
+            this.removeField3.TabIndex = 7;
             this.removeField3.Text = "−";
             this.removeField3.UseVisualStyleBackColor = false;
             this.removeField3.Visible = false;
+            this.removeField3.Click += new System.EventHandler(this.removeField3_Click);
             // 
             // removeField4
             // 
@@ -353,10 +358,11 @@
             this.removeField4.Location = new System.Drawing.Point(45, 332);
             this.removeField4.Name = "removeField4";
             this.removeField4.Size = new System.Drawing.Size(57, 61);
-            this.removeField4.TabIndex = 44;
+            this.removeField4.TabIndex = 10;
             this.removeField4.Text = "−";
             this.removeField4.UseVisualStyleBackColor = false;
             this.removeField4.Visible = false;
+            this.removeField4.Click += new System.EventHandler(this.removeField4_Click);
             // 
             // workoutTrackerForm
             // 
