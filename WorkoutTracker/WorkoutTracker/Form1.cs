@@ -5,11 +5,6 @@ namespace WorkoutTracker
 {
     public partial class workoutTrackerForm : Form
     {
-        struct Exercise
-        {
-            
-        }
-
         public workoutTrackerForm()
         {
             InitializeComponent();
@@ -26,7 +21,7 @@ namespace WorkoutTracker
             ).ToString();
             if (delete == "Yes")
             {
-                //Discard all temp data and do not write it to the database
+                //Exit without saving, dump exercise data
             }
         }
 
@@ -40,8 +35,9 @@ namespace WorkoutTracker
                 MessageBoxDefaultButton.Button2
                 ).ToString();
             if (finished == "Yes")
-            {
+            {                
                 //Generate new window with table of all exercises from the workout
+                //write data to DB
             }
         }
 
@@ -154,6 +150,8 @@ namespace WorkoutTracker
 
         }
 
+        
+
         private void nextButton_Click(object sender, EventArgs e)
         {
             //This is a temporary hack
@@ -168,6 +166,28 @@ namespace WorkoutTracker
 
             comboBox1.SelectedIndex = 0;
             
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(exitToolStripMenuItem.Text == "Log In")
+            {
+                //launch log in window
+                Form LogInDialog = new Form();
+         
+
+                exitToolStripMenuItem.Text = "Log Out";
+            }
+
+
+            if (exitToolStripMenuItem.Text == "Log Out")
+            {
+                //verify user's certainty about doing this
+
+                MessageBox.Show("Are you sure you want to log out?", "Log Out?",MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                
+                exitToolStripMenuItem.Text = "Log In";
+            }
         }
     }
 }
