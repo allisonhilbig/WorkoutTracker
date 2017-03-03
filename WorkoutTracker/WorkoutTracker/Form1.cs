@@ -173,7 +173,9 @@ namespace WorkoutTracker
             if(exitToolStripMenuItem.Text == "Log In")
             {
                 //launch log in window
-                Form LogInDialog = new Form();
+                LogInDialog login = new LogInDialog();
+                login.Show();
+
          
 
                 exitToolStripMenuItem.Text = "Log Out";

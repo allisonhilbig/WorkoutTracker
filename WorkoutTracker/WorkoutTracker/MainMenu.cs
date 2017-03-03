@@ -10,17 +10,22 @@ using System.Windows.Forms;
 
 namespace WorkoutTracker
 {
-    public partial class LogInDialog : Form
+    public partial class MainMenu : Form
     {
-        public LogInDialog()
+        public MainMenu()
         {
             InitializeComponent();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            NewUser newuser = new NewUser();
-            newuser.Show();
+            LogInDialog login = new LogInDialog();
+            login.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
