@@ -115,7 +115,7 @@
             this.removeField4.FlatAppearance.BorderSize = 0;
             this.removeField4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeField4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeField4.Location = new System.Drawing.Point(45, 332);
+            this.removeField4.Location = new System.Drawing.Point(45, 339);
             this.removeField4.Name = "removeField4";
             this.removeField4.Size = new System.Drawing.Size(57, 61);
             this.removeField4.TabIndex = 10;
@@ -360,7 +360,7 @@
             this.removeField1.FlatAppearance.BorderSize = 0;
             this.removeField1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeField1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeField1.Location = new System.Drawing.Point(45, 145);
+            this.removeField1.Location = new System.Drawing.Point(45, 152);
             this.removeField1.Name = "removeField1";
             this.removeField1.Size = new System.Drawing.Size(57, 61);
             this.removeField1.TabIndex = 1;
@@ -379,7 +379,7 @@
             this.removeField2.FlatAppearance.BorderSize = 0;
             this.removeField2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeField2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeField2.Location = new System.Drawing.Point(45, 212);
+            this.removeField2.Location = new System.Drawing.Point(45, 219);
             this.removeField2.Name = "removeField2";
             this.removeField2.Size = new System.Drawing.Size(57, 61);
             this.removeField2.TabIndex = 4;
@@ -398,7 +398,7 @@
             this.removeField3.FlatAppearance.BorderSize = 0;
             this.removeField3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeField3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeField3.Location = new System.Drawing.Point(45, 272);
+            this.removeField3.Location = new System.Drawing.Point(45, 279);
             this.removeField3.Name = "removeField3";
             this.removeField3.Size = new System.Drawing.Size(57, 61);
             this.removeField3.TabIndex = 7;
