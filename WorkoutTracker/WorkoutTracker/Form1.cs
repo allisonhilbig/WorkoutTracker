@@ -8,8 +8,8 @@ namespace WorkoutTracker
         public workoutTrackerForm()
         {
             InitializeComponent();
-            MainMenu mainform = new MainMenu();
-            mainform.Show();
+            //MainMenu mainform = new MainMenu();
+            //mainform.Show();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
