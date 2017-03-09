@@ -8,20 +8,24 @@ namespace WorkoutTracker
         public workoutTrackerForm()
         {
             InitializeComponent();
+            MainMenu mainform = new MainMenu();
+            mainform.Show();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-           string delete = MessageBox.Show(
-                "Are you sure you want to delete this whole workout?",
-                "Warning",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning,
-                MessageBoxDefaultButton.Button2
-            ).ToString();
+            string delete = MessageBox.Show(
+                 "Are you sure you want to delete this whole workout?",
+                 "Warning",
+                 MessageBoxButtons.YesNo,
+                 MessageBoxIcon.Warning,
+                 MessageBoxDefaultButton.Button2
+             ).ToString();
+
             if (delete == "Yes")
             {
                 //Exit without saving, dump exercise data
+           
             }
         }
 
