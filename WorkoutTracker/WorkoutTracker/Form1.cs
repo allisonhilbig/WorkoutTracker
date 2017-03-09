@@ -195,5 +195,10 @@ namespace WorkoutTracker
                 exitToolStripMenuItem.Text = "Log In";
             }
         }
+
+        private void workoutTrackerForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
