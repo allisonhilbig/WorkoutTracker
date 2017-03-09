@@ -20,12 +20,6 @@ namespace WorkoutTracker
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LogInDialog login = new LogInDialog();
-            login.Show();
-        }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             
@@ -47,6 +41,7 @@ namespace WorkoutTracker
         private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             con.Close();
+
         }
     }
 }
