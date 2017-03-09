@@ -8,13 +8,13 @@ namespace WorkoutTracker
 {
     class Workout
     {
-        private Exercise[] Exercises;
+        private LinkedNode Exercises;
         private DateTime Date;
         private String UserID;
 
         public Workout()
         {
-
+            Exercises = new LinkedNode(new Exercise());
         }
 
         public object getSummary(Exercise exercise)

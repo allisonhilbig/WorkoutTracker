@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WorkoutTracker
 {
     public partial class MainMenu : Form
     {
+        private SqlConnection con;
+
         public MainMenu()
         {
             InitializeComponent();
@@ -19,7 +22,15 @@ namespace WorkoutTracker
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+            con = new SqlConnection();
+            con.ConnectionString = Constants.DBDATASOURCE + Constants.DBATTACHDBFILENAME
+                + Constants.DBINTEGRATEDSECURITY + Constants.DBCONNECTTIMEOUT;
+            con.Open();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -27,15 +38,10 @@ namespace WorkoutTracker
             Application.Exit();
         }
 
-        private void loginbutton_Click(object sender, EventArgs e)
+        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            LogInDialog login = new LogInDialog();
-            login.Show();
-        }
+            con.Close();
 
-        private void logworkoutButton_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }
