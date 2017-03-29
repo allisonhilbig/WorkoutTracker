@@ -19,14 +19,14 @@ namespace WorkoutTracker
 			Values = new String[4];
         }
 
-        public String getExercise()
+        public String getExerciseName()
         {
             return ExerciseName;
         }
 
-        private void setExercise(string exercise)
+        private void setExerciseName(string exerciseName)
         {
-			ExerciseName = exercise;
+			ExerciseName = exerciseName;
         }
 
         public String getChar(int element)
