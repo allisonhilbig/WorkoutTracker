@@ -5,9 +5,12 @@ namespace WorkoutTracker
 {
     public partial class workoutTrackerForm : Form
     {
+        Workout workout;
+
         public workoutTrackerForm()
         {
             InitializeComponent();
+            workout = new Workout(new Exercise());
             //MainMenu mainform = new MainMenu();
             //mainform.Show();
         }
@@ -24,7 +27,7 @@ namespace WorkoutTracker
 
             if (delete == "Yes")
             {
-                //Exit without saving, dump exercise data
+                Close();//Exit without saving, dump exercise data
            
             }
         }
@@ -170,6 +173,13 @@ namespace WorkoutTracker
 
             comboBox1.SelectedIndex = 0;
             
+            if(workout.GetNextNode() == null)
+            {
+                Exercise exercise = new Exercise();
+
+
+                workout.AddToCurrentNext(new Exercise());
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
