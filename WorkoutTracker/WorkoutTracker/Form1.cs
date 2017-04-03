@@ -163,15 +163,39 @@ namespace WorkoutTracker
         {
             
             comboBox1.SelectedIndex = 0;
-            
-            if(workout.GetNextNode() == null)
+
+            if (workout.GetNextNode() == null)
             {
                 Exercise exercise = new Exercise();
-                workout.AddToCurrentNext(new Exercise());
+                workout.AddToCurrentNext(exercise);
+                exercise.setExerciseName(comboBox1.Text);
+
+                if (category1.Visible)
+                { 
+                    exercise.setChar(0, category1.Text);
+                    exercise.setVal(0, value1.Text);
+                }
+                if (category2.Visible)
+                {
+                    exercise.setChar(1, category2.Text);
+                    exercise.setVal(1, value2.Text);
+                }
+
+                if (category3.Visible)
+                {
+                    exercise.setChar(2, category3.Text);
+                    exercise.setVal(2, value3.Text);
+                }
+
+                if (category4.Visible)
+                {
+                    exercise.setChar(3, category4.Text);
+                    exercise.setVal(3, value4.Text);
+                }
+
+                //exercise.toString();
             }
-
-
-
+            
             //This is a temporary hack
             if (value4.Visible)
                 removeField4_Click(sender, e);
@@ -181,6 +205,8 @@ namespace WorkoutTracker
                 removeField2_Click(sender, e);
             if (value1.Visible)
                 removeField1_Click(sender, e);
+
+            workout.MoveNextNode();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -210,6 +236,71 @@ namespace WorkoutTracker
         private void workoutTrackerForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+
+//            workout.MovePrevNode();
+            Exercise exercise = workout.GetCurrentExercise();
+
+            if (value4.Visible)
+                removeField4_Click(sender, e);
+            if (value3.Visible)
+                removeField3_Click(sender, e);
+            if (value2.Visible)
+                removeField2_Click(sender, e);
+            if (value1.Visible)
+                removeField1_Click(sender, e);
+/*
+            comboBox1.Text = exercise.getExerciseName();
+            if (exercise.getChar(3) != "")
+            {
+                addField1_Click(sender, e);
+                addField2_Click(sender, e);
+                addField3_Click(sender, e);
+                addField4_Click(sender, e);
+                category4.AppendText(exercise.getChar(3));
+                value4.AppendText(exercise.getVal(3));
+                category3.AppendText(exercise.getChar(2));
+                value3.AppendText(exercise.getVal(2));
+                category2.AppendText(exercise.getChar(1));
+                value2.AppendText(exercise.getVal(1));
+                category1.AppendText(exercise.getChar(0));
+                value1.AppendText(exercise.getVal(0));
+            }
+            else if (exercise.getChar(2) != "")
+            {
+                addField1_Click(sender, e);
+                addField2_Click(sender, e);
+                addField3_Click(sender, e);
+                category3.AppendText(exercise.getChar(2));
+                value3.AppendText(exercise.getVal(2));
+                category2.AppendText(exercise.getChar(1));
+                value2.AppendText(exercise.getVal(1));
+                category1.AppendText(exercise.getChar(0));
+                value1.AppendText(exercise.getVal(0));
+            }
+            else if (exercise.getChar(1) != "")
+            {
+                addField1_Click(sender, e);
+                addField2_Click(sender, e);
+                category2.AppendText(exercise.getChar(1));
+                value2.AppendText(exercise.getVal(1));
+                category1.AppendText(exercise.getChar(0));
+                value1.AppendText(exercise.getVal(0));
+            }
+            else if (exercise.getChar(0) != "")
+            {
+                addField1_Click(sender, e);
+                category1.AppendText(exercise.getChar(0));
+                value1.AppendText(exercise.getVal(0));
+            }
+            else
+            {
+                addField1_Click(sender, e);
+            }
+            */
         }
     }
 }
