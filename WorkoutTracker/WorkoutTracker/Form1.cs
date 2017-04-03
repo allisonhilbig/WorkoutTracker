@@ -161,6 +161,17 @@ namespace WorkoutTracker
 
         private void nextButton_Click(object sender, EventArgs e)
         {
+            
+            comboBox1.SelectedIndex = 0;
+            
+            if(workout.GetNextNode() == null)
+            {
+                Exercise exercise = new Exercise();
+                workout.AddToCurrentNext(new Exercise());
+            }
+
+
+
             //This is a temporary hack
             if (value4.Visible)
                 removeField4_Click(sender, e);
@@ -170,16 +181,6 @@ namespace WorkoutTracker
                 removeField2_Click(sender, e);
             if (value1.Visible)
                 removeField1_Click(sender, e);
-
-            comboBox1.SelectedIndex = 0;
-            
-            if(workout.GetNextNode() == null)
-            {
-                Exercise exercise = new Exercise();
-
-
-                workout.AddToCurrentNext(new Exercise());
-            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
