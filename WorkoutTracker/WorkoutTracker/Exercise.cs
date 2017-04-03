@@ -200,7 +200,7 @@ namespace WorkoutTracker
             return ExerciseName;
         }
 
-        private void setExerciseName(string exerciseName)
+        public void setExerciseName(string exerciseName)
         {
 			ExerciseName = exerciseName;
         }
@@ -210,7 +210,7 @@ namespace WorkoutTracker
             return Characteristics[element];
         }
 
-        private void setChar(int element, string chara)
+        public void setChar(int element, string chara)
         {
             Characteristics[element] = chara;
         }
@@ -220,9 +220,15 @@ namespace WorkoutTracker
             return Values[element];
         }
 
-        private void setVal(int element, String value)
+        public void setVal(int element, String value)
         {
 			Values[element] = value;
+        }
+        public void toString()
+        {
+            System.Windows.Forms.MessageBox.Show("Character List: [" + Characteristics[0] + ", " + Characteristics[1] +
+                ", " + Characteristics[2] + ", " + Characteristics[3] + "] " + "\nValues List: [" + Values[0] + ", " + 
+                Values[1] + ", " + Values[2] + ", " + Values[3] + "]");
         }
     }
 }
