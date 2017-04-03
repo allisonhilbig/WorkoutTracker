@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WorkoutTracker
 {
     public partial class workoutTrackerForm : Form
     {
         private Exercise headExercise;
+        private SqlConnection con;
 
         public workoutTrackerForm()
         {
             InitializeComponent();
             headExercise = new Exercise();
+
             //MainMenu mainform = new MainMenu();
             //mainform.Show();
         }
