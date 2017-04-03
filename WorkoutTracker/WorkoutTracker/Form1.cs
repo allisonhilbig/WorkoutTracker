@@ -5,12 +5,12 @@ namespace WorkoutTracker
 {
     public partial class workoutTrackerForm : Form
     {
-        Workout workout;
+        private Exercise headExercise;
 
         public workoutTrackerForm()
         {
             InitializeComponent();
-            workout = new Workout(new Exercise());
+            headExercise = new Exercise();
             //MainMenu mainform = new MainMenu();
             //mainform.Show();
         }
@@ -164,10 +164,10 @@ namespace WorkoutTracker
             
             comboBox1.SelectedIndex = 0;
 
-            if (workout.GetNextNode() == null)
+            if (headExercise.GetNextNode() == null)
             {
                 Exercise exercise = new Exercise();
-                workout.AddToCurrentNext(exercise);
+                headExercise.AddToCurrentNext(exercise);
                 exercise.setExerciseName(comboBox1.Text);
 
                 if (category1.Visible)
@@ -206,7 +206,7 @@ namespace WorkoutTracker
             if (value1.Visible)
                 removeField1_Click(sender, e);
 
-            workout.MoveNextNode();
+            headExercise.MoveNextNode();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,9 +240,8 @@ namespace WorkoutTracker
 
         private void backButton_Click(object sender, EventArgs e)
         {
-
 //            workout.MovePrevNode();
-            Exercise exercise = workout.GetCurrentExercise();
+            Exercise exercise = headExercise.GetCurrentExercise();
 
             if (value4.Visible)
                 removeField4_Click(sender, e);

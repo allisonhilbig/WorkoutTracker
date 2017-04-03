@@ -23,5 +23,22 @@ namespace WorkoutTracker
             FirstExercise = firstExercise;
             Date = DateTime.Now;
         }
+
+        /// <summary>
+        /// Gets exercise information
+        /// Returns the Name and Characteristics.
+        /// </summary>
+        /// <returns></returns>
+        public List<Exercise> GetSummary()
+        {
+            FirstExercise.MoveToFirstNode();
+            List<Exercise> summary = new List<Exercise>();
+            //while (FirstExercise.GetCurrentExercise())
+            //{
+            //    summary.Add(GetCurrentExercise());
+            //    MoveNextNode();
+            //}
+            return summary;
+        }
     }
 }

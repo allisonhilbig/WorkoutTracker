@@ -48,25 +48,6 @@ namespace WorkoutTracker
         }
 
         /// <summary>
-        /// Gets exercise information
-        /// Returns the Name and Characteristics.
-        /// </summary>
-        /// <returns></returns>
-        public List<Exercise> GetSummary()
-        {
-            MoveToFirstNode();
-            List<Exercise> summary = new List<Exercise>();
-            summary.Add(this);
-            MoveNextNode();
-            while (CurrentNode != this)
-            {
-                summary.Add(GetCurrentExercise());
-                MoveNextNode();
-            }
-            return summary;
-        }
-
-        /// <summary>
         /// Change CurrentNode to FirstNode
         /// </summary>
         public void MoveToFirstNode()
