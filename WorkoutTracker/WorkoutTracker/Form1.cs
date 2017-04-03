@@ -5,12 +5,12 @@ namespace WorkoutTracker
 {
     public partial class workoutTrackerForm : Form
     {
-        Workout workout;
+        private Exercise headExercise;
 
         public workoutTrackerForm()
         {
             InitializeComponent();
-            workout = new Workout(new Exercise());
+            headExercise = new Exercise();
             //MainMenu mainform = new MainMenu();
             //mainform.Show();
         }
@@ -161,13 +161,12 @@ namespace WorkoutTracker
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            
             comboBox1.SelectedIndex = 0;
             
-            if(workout.GetNextNode() == null)
+            if(headExercise.GetNextNode() == null)
             {
                 Exercise exercise = new Exercise();
-                workout.AddToCurrentNext(new Exercise());
+                headExercise.AddToCurrentNext(new Exercise());
             }
 
 
