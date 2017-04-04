@@ -45,9 +45,10 @@ namespace WorkoutTracker
                 MessageBoxDefaultButton.Button2
                 ).ToString();
             if (finished == "Yes")
-            {                
+            {
                 //Generate new window with table of all exercises from the workout
                 //write data to DB
+                Close();
             }
         }
 
@@ -160,56 +161,77 @@ namespace WorkoutTracker
 
         }
 
-        
-
         private void nextButton_Click(object sender, EventArgs e)
         {
-            
             comboBox1.SelectedIndex = 0;
 
-            if (headExercise.GetNextNode() == null)
+            Exercise exercise = new Exercise();
+            exercise.setExerciseName(comboBox1.Text);
+
+            if (category1.Visible)
             {
-                Exercise exercise = new Exercise();
-                headExercise.AddToCurrentNext(exercise);
-                exercise.setExerciseName(comboBox1.Text);
-
-                if (category1.Visible)
-                { 
-                    exercise.setChar(0, category1.Text);
-                    exercise.setVal(0, value1.Text);
-                }
-                if (category2.Visible)
-                {
-                    exercise.setChar(1, category2.Text);
-                    exercise.setVal(1, value2.Text);
-                }
-
-                if (category3.Visible)
-                {
-                    exercise.setChar(2, category3.Text);
-                    exercise.setVal(2, value3.Text);
-                }
-
-                if (category4.Visible)
-                {
-                    exercise.setChar(3, category4.Text);
-                    exercise.setVal(3, value4.Text);
-                }
-
-                //exercise.toString();
+                exercise.setChar(0, category1.Text);
+                exercise.setVal(0, value1.Text);
             }
-            
-            //This is a temporary hack
-            if (value4.Visible)
-                removeField4_Click(sender, e);
-            if (value3.Visible)
-                removeField3_Click(sender, e);
-            if (value2.Visible)
-                removeField2_Click(sender, e);
-            if (value1.Visible)
-                removeField1_Click(sender, e);
+            if (category2.Visible)
+            {
+                exercise.setChar(1, category2.Text);
+                exercise.setVal(1, value2.Text);
+            }
 
+            if (category3.Visible)
+            {
+                exercise.setChar(2, category3.Text);
+                exercise.setVal(2, value3.Text);
+            }
+
+            if (category4.Visible)
+            {
+                exercise.setChar(3, category4.Text);
+                exercise.setVal(3, value4.Text);
+            }
+
+            headExercise.SetCurrentExercise(exercise);
+
+            headExercise.AddToCurrentNext(new Exercise());
             headExercise.MoveNextNode();
+            ReadExercise();
+        }
+
+        private void ReadExercise()
+        {
+            comboBox1.Text = headExercise.GetCurrentExercise().getExerciseName();
+            String temp = headExercise.GetCurrentExercise().getChar(0);
+
+            if (temp != null)
+            {
+                category1.Text = temp;
+                value1.Text = headExercise.GetCurrentExercise().getVal(0);
+            }
+
+            temp = headExercise.GetCurrentExercise().getChar(1);
+
+            if (temp != null)
+            {
+                category1.Text = temp;
+                value1.Text = headExercise.GetCurrentExercise().getVal(1);
+            }
+
+            temp = headExercise.GetCurrentExercise().getChar(2);
+
+            if (temp != null)
+            {
+                category1.Text = temp;
+                value1.Text = headExercise.GetCurrentExercise().getVal(2);
+            }
+
+            temp = headExercise.GetCurrentExercise().getChar(3);
+
+            if (temp != null)
+            {
+                category1.Text = temp;
+                value1.Text = headExercise.GetCurrentExercise().getVal(3);
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -243,66 +265,39 @@ namespace WorkoutTracker
 
         private void backButton_Click(object sender, EventArgs e)
         {
-//            workout.MovePrevNode();
-            Exercise exercise = headExercise.GetCurrentExercise();
+            comboBox1.SelectedIndex = 0;
 
-            if (value4.Visible)
-                removeField4_Click(sender, e);
-            if (value3.Visible)
-                removeField3_Click(sender, e);
-            if (value2.Visible)
-                removeField2_Click(sender, e);
-            if (value1.Visible)
-                removeField1_Click(sender, e);
-/*
-            comboBox1.Text = exercise.getExerciseName();
-            if (exercise.getChar(3) != "")
+            Exercise exercise = new Exercise();
+            exercise.setExerciseName(comboBox1.Text);
+
+            if (category1.Visible)
             {
-                addField1_Click(sender, e);
-                addField2_Click(sender, e);
-                addField3_Click(sender, e);
-                addField4_Click(sender, e);
-                category4.AppendText(exercise.getChar(3));
-                value4.AppendText(exercise.getVal(3));
-                category3.AppendText(exercise.getChar(2));
-                value3.AppendText(exercise.getVal(2));
-                category2.AppendText(exercise.getChar(1));
-                value2.AppendText(exercise.getVal(1));
-                category1.AppendText(exercise.getChar(0));
-                value1.AppendText(exercise.getVal(0));
+                exercise.setChar(0, category1.Text);
+                exercise.setVal(0, value1.Text);
             }
-            else if (exercise.getChar(2) != "")
+            if (category2.Visible)
             {
-                addField1_Click(sender, e);
-                addField2_Click(sender, e);
-                addField3_Click(sender, e);
-                category3.AppendText(exercise.getChar(2));
-                value3.AppendText(exercise.getVal(2));
-                category2.AppendText(exercise.getChar(1));
-                value2.AppendText(exercise.getVal(1));
-                category1.AppendText(exercise.getChar(0));
-                value1.AppendText(exercise.getVal(0));
+                exercise.setChar(1, category2.Text);
+                exercise.setVal(1, value2.Text);
             }
-            else if (exercise.getChar(1) != "")
+
+            if (category3.Visible)
             {
-                addField1_Click(sender, e);
-                addField2_Click(sender, e);
-                category2.AppendText(exercise.getChar(1));
-                value2.AppendText(exercise.getVal(1));
-                category1.AppendText(exercise.getChar(0));
-                value1.AppendText(exercise.getVal(0));
+                exercise.setChar(2, category3.Text);
+                exercise.setVal(2, value3.Text);
             }
-            else if (exercise.getChar(0) != "")
+
+            if (category4.Visible)
             {
-                addField1_Click(sender, e);
-                category1.AppendText(exercise.getChar(0));
-                value1.AppendText(exercise.getVal(0));
+                exercise.setChar(3, category4.Text);
+                exercise.setVal(3, value4.Text);
             }
-            else
-            {
-                addField1_Click(sender, e);
-            }
-            */
+
+            headExercise.SetCurrentExercise(exercise);
+
+            headExercise.AddToCurrentPrev(new Exercise());
+            headExercise.MovePrevNode();
+            ReadExercise();
         }
     }
 }

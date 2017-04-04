@@ -44,7 +44,7 @@ namespace WorkoutTracker
                 dataReader = comm.ExecuteReader();
                 if (!dataReader.HasRows)
                 {
-                    MessageBox.Show("Username and Password do not exsist.\nPlease create a new Account.");
+                    MessageBox.Show("Username and Password do not exist.\nPlease create a new Account.");
                 }
                 else
                 {
