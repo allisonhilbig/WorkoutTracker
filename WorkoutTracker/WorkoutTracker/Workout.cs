@@ -8,93 +8,37 @@ namespace WorkoutTracker
 {
     class Workout
     {
-        private DateTime Date;
-        private String UserID;
+        public DateTime Date;
+        public String UserID;
+        public Exercise FirstExercise;
 
-        private Exercise Exercise;
-        private Workout NextNode;
-        private Workout CurrentNode;
-        private Workout PreviousNode;
-
-        public Workout(Exercise exercise)
+        public Workout()
         {
-            Exercise = exercise;
-            CurrentNode = this;
+            FirstExercise = new Exercise();
+            Date = DateTime.Now;
         }
 
+        public Workout(Exercise firstExercise)
+        {
+            FirstExercise = firstExercise;
+            Date = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Gets exercise information
+        /// Returns the Name and Characteristics.
+        /// </summary>
+        /// <returns></returns>
         public List<Exercise> GetSummary()
         {
-            MoveToFirstNode();
+            FirstExercise.MoveToFirstNode();
             List<Exercise> summary = new List<Exercise>();
-            summary.Add(Exercise);
-            MoveNextNode();
-            while(CurrentNode != this)
-            {
-                summary.Add(GetCurrentExercise());
-                MoveNextNode();
-            }
+            //while (FirstExercise.GetCurrentExercise())
+            //{
+            //    summary.Add(GetCurrentExercise());
+            //    MoveNextNode();
+            //}
             return summary;
-        }
-
-        public void MoveToFirstNode()
-        {
-            CurrentNode = this;
-        }
-
-        public void AddToCurrentNext(Exercise exercise)
-        {
-            CurrentNode.AddNext(exercise);
-        }
-
-        public void AddNext(Exercise exercise)
-        {
-            Workout temp = NextNode;
-            NextNode = new Workout(exercise);
-            NextNode.ReplaceNext(temp);
-            NextNode.ReplacePrev(this);
-        }
-
-        public void AddPrev(Exercise exercise)
-        {
-            Workout temp = PreviousNode;
-            PreviousNode = new Workout(exercise);
-            PreviousNode.ReplaceNext(this);
-            PreviousNode.ReplacePrev(temp);
-        }
-
-        public void ReplaceNext(Workout linkedNode)
-        {
-            NextNode = linkedNode;
-        }
-
-        public void ReplacePrev(Workout linkedNode)
-        {
-            PreviousNode = linkedNode;
-        }
-
-        public void MoveNextNode()
-        {
-            CurrentNode = CurrentNode.GetNextNode();
-        }
-
-        public void MovePrevNode()
-        {
-            CurrentNode = CurrentNode.GetPrevNode();
-        }
-
-        public Workout GetNextNode()
-        {
-            return NextNode;
-        }
-
-        public Workout GetPrevNode()
-        {
-            return PreviousNode;
-        }
-
-        public Exercise GetCurrentExercise()
-        {
-            return Exercise;
         }
     }
 }
