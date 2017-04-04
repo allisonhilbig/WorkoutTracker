@@ -163,7 +163,7 @@ namespace WorkoutTracker
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            comboBox1.SelectedIndex = 0;
+            //comboBox1.SelectedIndex = 0;
 
             Exercise exercise = new Exercise();
             exercise.setExerciseName(comboBox1.Text);
@@ -193,7 +193,10 @@ namespace WorkoutTracker
 
             headExercise.SetCurrentExercise(exercise);
 
-            headExercise.AddToCurrentNext(new Exercise());
+            if (headExercise.GetCurrentExercise().GetNextNode() == null)
+            {
+                headExercise.AddToCurrentNext(new Exercise());
+            }
             headExercise.MoveNextNode();
             ReadExercise();
         }
@@ -203,35 +206,89 @@ namespace WorkoutTracker
             comboBox1.Text = headExercise.GetCurrentExercise().getExerciseName();
             String temp = headExercise.GetCurrentExercise().getChar(0);
 
-            if (temp != null)
+            if (temp == null)
             {
-                category1.Text = temp;
-                value1.Text = headExercise.GetCurrentExercise().getVal(0);
+                temp = "";
+                addField1.Visible = true;
+                removeField1.Visible = false;
+                addField2.Visible = false;
+                category1.Visible = false;
+                value1.Visible = false;
             }
+            else
+            {
+                addField1.Visible = false;
+                removeField1.Visible = true;
+                addField2.Visible = true;
+                category1.Visible = true;
+                value1.Visible = true;
+            }
+            category1.Text = temp;
+            value1.Text = headExercise.GetCurrentExercise().getVal(0);
 
             temp = headExercise.GetCurrentExercise().getChar(1);
 
-            if (temp != null)
+            if (temp == null)
             {
-                category1.Text = temp;
-                value1.Text = headExercise.GetCurrentExercise().getVal(1);
+                temp = "";
+                removeField2.Visible = false;
+                addField3.Visible = false;
+                category2.Visible = false;
+                value2.Visible = false;
             }
+            else
+            {
+                removeField1.Visible = false;
+                addField2.Visible = false;
+                removeField2.Visible = true;
+                addField3.Visible = true;
+                category2.Visible = true;
+                value2.Visible = true;
+            }
+            category2.Text = temp;
+            value2.Text = headExercise.GetCurrentExercise().getVal(1);
 
             temp = headExercise.GetCurrentExercise().getChar(2);
 
-            if (temp != null)
+            if (temp == null)
             {
-                category1.Text = temp;
-                value1.Text = headExercise.GetCurrentExercise().getVal(2);
+                temp = "";
+                removeField3.Visible = false;
+                addField4.Visible = false;
+                category3.Visible = false;
+                value3.Visible = false;
             }
-
+            else
+            {
+                removeField2.Visible = false;
+                addField3.Visible = false;
+                removeField3.Visible = true;
+                addField4.Visible = true;
+                category3.Visible = true;
+                value3.Visible = true;
+            }
+            category3.Text = temp;
+            value3.Text = headExercise.GetCurrentExercise().getVal(2);
+            
             temp = headExercise.GetCurrentExercise().getChar(3);
 
-            if (temp != null)
+            if (temp == null)
             {
-                category1.Text = temp;
-                value1.Text = headExercise.GetCurrentExercise().getVal(3);
+                temp = "";
+                removeField4.Visible = false;
+                category4.Visible = false;
+                value4.Visible = false;
             }
+            else
+            {
+                removeField3.Visible = false;
+                addField4.Visible = false;
+                removeField4.Visible = true;
+                category4.Visible = true;
+                value4.Visible = true;
+            }
+            category4.Text = temp;
+            value4.Text = headExercise.GetCurrentExercise().getVal(3);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -265,7 +322,7 @@ namespace WorkoutTracker
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            comboBox1.SelectedIndex = 0;
+            //comboBox1.SelectedIndex = 0;
 
             Exercise exercise = new Exercise();
             exercise.setExerciseName(comboBox1.Text);
@@ -295,7 +352,10 @@ namespace WorkoutTracker
 
             headExercise.SetCurrentExercise(exercise);
 
-            headExercise.AddToCurrentPrev(new Exercise());
+            if (headExercise.GetCurrentExercise().GetPrevNode() == null)
+            {
+                headExercise.AddToCurrentPrev(new Exercise());
+            }
             headExercise.MovePrevNode();
             ReadExercise();
         }
