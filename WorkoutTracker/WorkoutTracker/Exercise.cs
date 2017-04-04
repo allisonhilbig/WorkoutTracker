@@ -38,7 +38,7 @@ namespace WorkoutTracker
             Values = new String[4];
             CurrentNode = this;
         }
-        
+
         public Exercise()
         {
             ExerciseName = "";
@@ -169,11 +169,10 @@ namespace WorkoutTracker
         /// <param name="exercise">Changes value in CurrentNode to exercise</param>
         public void SetCurrentExercise(Exercise exercise)
         {
-            Exercise tempPrev = CurrentNode.GetPrevNode();
-            Exercise tempNext = CurrentNode.GetNextNode();
-            Exercise tempNew = exercise;
-            tempNew.ReplacePrev(tempPrev);
-            tempNew.ReplaceNext(tempNext);
+            ExerciseName = exercise.getExerciseName();
+            Characteristics = exercise.getCharacteristics();
+            Values = exercise.getValues();
+            CurrentNode = this;
         }
 
         public String getExerciseName()
@@ -186,6 +185,11 @@ namespace WorkoutTracker
 			ExerciseName = exerciseName;
         }
 
+        public String[] getCharacteristics()
+        {
+            return Characteristics;
+        }
+
         public String getChar(int element)
         {
             return Characteristics[element];
@@ -194,6 +198,11 @@ namespace WorkoutTracker
         public void setChar(int element, string chara)
         {
             Characteristics[element] = chara;
+        }
+
+        public String[] getValues()
+        {
+            return Values;
         }
 
         public String getVal(int element)

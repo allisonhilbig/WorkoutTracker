@@ -55,6 +55,7 @@ namespace WorkoutTracker
                 + Constants.DBINTEGRATEDSECURITY + Constants.DBCONNECTTIMEOUT;
             con.Open();
 
+
             /*
              * Temp Examples of SQL Commands and Queries
              */
