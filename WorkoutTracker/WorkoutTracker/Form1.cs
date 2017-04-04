@@ -42,9 +42,9 @@ namespace WorkoutTracker
                 MessageBoxDefaultButton.Button2
                 ).ToString();
             if (finished == "Yes")
-            {                
-                //Generate new window with table of all exercises from the workout
-                //write data to DB
+            {
+                WorkoutSummary summary = new WorkoutSummary();
+                summary.Show();
             }
         }
 
