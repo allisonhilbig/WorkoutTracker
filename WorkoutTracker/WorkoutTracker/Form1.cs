@@ -46,9 +46,8 @@ namespace WorkoutTracker
                 ).ToString();
             if (finished == "Yes")
             {
-                //Generate new window with table of all exercises from the workout
-                //write data to DB
-                Close();
+                WorkoutSummary summary = new WorkoutSummary();
+                summary.Show();
             }
         }
 
