@@ -94,6 +94,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAccount.cs" />
     <Compile Include="Workout.cs" />
+    <Compile Include="WorkoutSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkoutSummary.Designer.cs">
+      <DependentUpon>WorkoutSummary.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +122,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="WorkoutSummary.resx">
+      <DependentUpon>WorkoutSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
