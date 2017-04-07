@@ -17,9 +17,12 @@ namespace WorkoutTracker
         private SqlConnection con;
 
         public WorkoutSummary(SqlConnection connection)
+        public WorkoutSummary(Exercise firstExercise)
         {
             InitializeComponent();
             con = connection;
+            Exercise headExercise = firstExercise;
+
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -110,12 +113,12 @@ namespace WorkoutTracker
                 var csv = new StringBuilder();
 
                 var newLine = string.Format("{0},{1},{2}", "Name of User","","Workout Name");
-                csv.Append(newLine);
+                csv.AppendLine(newLine);
                 newLine = string.Format("{0}", "Description of Workout");
-
+                csv.AppendLine(newLine);
                 //For each exercise in workout
-                newLine = string.Format("");
-                csv.Append(newLine);
+                newLine = "";
+                csv.AppendLine(newLine);
                 //Writes the data into the grid
                     newLine = string.Format("{0},{1}","Exercise", "Name of Exercise");
                     csv.AppendLine(newLine);
