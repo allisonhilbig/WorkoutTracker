@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkoutTracker
 {
-    class Exercise
+    public class Exercise
     {
         private String ExerciseName;
         private String[] Characteristics;
