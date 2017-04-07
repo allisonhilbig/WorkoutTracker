@@ -46,7 +46,7 @@ namespace WorkoutTracker
                 ).ToString();
             if (finished == "Yes")
             {
-                WorkoutSummary summary = new WorkoutSummary();
+                WorkoutSummary summary = new WorkoutSummary(con);
                 summary.Show();
                 
             }
