@@ -48,6 +48,7 @@ namespace WorkoutTracker
             {
                 WorkoutSummary summary = new WorkoutSummary();
                 summary.Show();
+                
             }
         }
 
