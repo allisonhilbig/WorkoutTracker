@@ -18,6 +18,18 @@ namespace WorkoutTracker
         public MainMenu()
         {
             InitializeComponent();
+            if (this.Focused)
+            {
+                isLoggedIn(LogInDialog.getUsername());
+            }
+        }
+
+        public void isLoggedIn(String username)
+        {
+            if (!username.Equals(""))
+            {
+                usernameLabel.Text = username;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -38,7 +50,7 @@ namespace WorkoutTracker
 
         private void loginbutton_Click(object sender, EventArgs e)
         {
-            LogInDialog logInForm = new LogInDialog();
+            LogInDialog logInForm = new LogInDialog(this);
             logInForm.Show();
         }
 
@@ -91,5 +103,17 @@ namespace WorkoutTracker
             //    ;
             //}
         }
+        public void setUsernameLabel(String username)
+        {
+            usernameLabel.Text = username;
+        }
+        public void setButtonsBackgroundColor()
+        {
+            logworkoutButton.UseVisualStyleBackColor = true;
+            logworkoutButton.Enabled = true;
+            exportButton.UseVisualStyleBackColor = true;
+            exportButton.Enabled = true;
+        }
+
     }
 }
