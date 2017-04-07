@@ -48,8 +48,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.doneButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.summaryTable.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -317,16 +317,6 @@
             this.label1.Text = "Exercise";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // doneButton
-            // 
-            this.doneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.doneButton.Location = new System.Drawing.Point(1982, 582);
-            this.doneButton.Name = "doneButton";
-            this.doneButton.Size = new System.Drawing.Size(200, 65);
-            this.doneButton.TabIndex = 1;
-            this.doneButton.Text = "Done";
-            this.doneButton.UseVisualStyleBackColor = true;
-            // 
             // exportButton
             // 
             this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -338,14 +328,24 @@
             this.exportButton.UseVisualStyleBackColor = true;
             this.exportButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(1982, 582);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(200, 65);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Done";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // WorkoutSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2194, 659);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.exportButton);
-            this.Controls.Add(this.doneButton);
             this.Controls.Add(this.summaryTable);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WorkoutSummary";
@@ -377,7 +377,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button doneButton;
         private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Button button1;
     }
 }
