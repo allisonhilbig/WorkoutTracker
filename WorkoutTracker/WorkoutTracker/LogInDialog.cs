@@ -14,16 +14,29 @@ namespace WorkoutTracker
     public partial class LogInDialog : Form
     {
         private SqlConnection con;
+        private static String username = "", password = "";
+        MainMenu mainmenu = null;
 
         public LogInDialog()
         {
             InitializeComponent();
         }
 
+        public LogInDialog(MainMenu mainmenu)
+        {
+            InitializeComponent();
+            this.mainmenu = mainmenu;
+        }
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             NewUser newuser = new NewUser();
             newuser.Show();
+        }
+
+        public static String getUsername()
+        {
+            return username;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -45,6 +58,9 @@ namespace WorkoutTracker
                 if (!dataReader.HasRows)
                 {
                     MessageBox.Show("Username and Password do not exist.\nPlease create a new Account.");
+                    Close();
+                    LogInDialog logInForm = new LogInDialog();
+                    logInForm.Show();
                 }
                 else
                 {
@@ -72,6 +88,8 @@ namespace WorkoutTracker
         {
             if (con != null)
                 con.Close();
+            mainmenu.setUsernameLabel(textBox1.Text);
+            mainmenu.setButtonsBackgroundColor();
         }
     }
 }
