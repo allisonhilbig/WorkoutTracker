@@ -41,8 +41,6 @@ namespace WorkoutTracker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-           
             if(passwardMatch == true)
             {
                 textBox4.Clear();
@@ -50,8 +48,8 @@ namespace WorkoutTracker
                 textBox1.Clear();
                 textBox2.Clear();
                 //pass on the username && pwd to database
+                this.Close();
             }
-            
         }
 
         //Username textbox
@@ -95,5 +93,6 @@ namespace WorkoutTracker
             }
         }
 
+        
     }
 }
