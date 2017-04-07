@@ -75,8 +75,8 @@ namespace WorkoutTracker
         {
             Exercise temp = NextNode;
             NextNode = exercise;
-            NextNode.ReplaceNext(temp);
             NextNode.ReplacePrev(this);
+            NextNode.ReplaceNext(temp);
         }
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace WorkoutTracker
         {
             Exercise temp = PreviousNode;
             PreviousNode = exercise;
-            PreviousNode.ReplaceNext(this);
             PreviousNode.ReplacePrev(temp);
+            PreviousNode.ReplaceNext(this);
         }
 
         /// <summary>
@@ -160,7 +160,19 @@ namespace WorkoutTracker
         /// <returns></returns>
         public Exercise GetCurrentExercise()
         {
-            return this;
+            return CurrentNode;
+        }
+
+        /// <summary>
+        /// Changes exercise value of thie node
+        /// </summary>
+        /// <param name="exercise">Changes value in this to exercise</param>
+        public void SetExercise(Exercise exercise)
+        {
+            ExerciseName = exercise.getExerciseName();
+            Characteristics = exercise.getCharacteristics();
+            Values = exercise.getValues();
+            CurrentNode = this;
         }
 
         /// <summary>
@@ -169,12 +181,8 @@ namespace WorkoutTracker
         /// <param name="exercise">Changes value in CurrentNode to exercise</param>
         public void SetCurrentExercise(Exercise exercise)
         {
-            ExerciseName = exercise.getExerciseName();
-            Characteristics = exercise.getCharacteristics();
-            Values = exercise.getValues();
-            CurrentNode = this;
+            CurrentNode.SetExercise(exercise);
         }
-
         public String getExerciseName()
         {
             return ExerciseName;
@@ -182,7 +190,7 @@ namespace WorkoutTracker
 
         public void setExerciseName(string exerciseName)
         {
-			ExerciseName = exerciseName;
+            ExerciseName = exerciseName;
         }
 
         public String[] getCharacteristics()
@@ -212,12 +220,12 @@ namespace WorkoutTracker
 
         public void setVal(int element, String value)
         {
-			Values[element] = value;
+            Values[element] = value;
         }
         public void toString()
         {
             System.Windows.Forms.MessageBox.Show("Character List: [" + Characteristics[0] + ", " + Characteristics[1] +
-                ", " + Characteristics[2] + ", " + Characteristics[3] + "] " + "\nValues List: [" + Values[0] + ", " + 
+                ", " + Characteristics[2] + ", " + Characteristics[3] + "] " + "\nValues List: [" + Values[0] + ", " +
                 Values[1] + ", " + Values[2] + ", " + Values[3] + "]");
         }
     }
