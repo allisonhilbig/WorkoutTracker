@@ -46,8 +46,9 @@ namespace WorkoutTracker
                 ).ToString();
             if (finished == "Yes")
             {
-                WorkoutSummary summary = new WorkoutSummary();
+                WorkoutSummary summary = new WorkoutSummary(headExercise);
                 summary.Show();
+                Close(); //sends data to summary and then closes this form
             }
         }
 
