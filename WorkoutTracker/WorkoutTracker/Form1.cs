@@ -1,27 +1,35 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WorkoutTracker
 {
     public partial class workoutTrackerForm : Form
     {
-        public workoutTrackerForm()
+        private Exercise headExercise;
+        private UserAccount Account;
+
+        public workoutTrackerForm(UserAccount account)
         {
             InitializeComponent();
+            headExercise = new Exercise();
+            Account = account;
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-           string delete = MessageBox.Show(
-                "Are you sure you want to delete this whole workout?",
-                "Warning",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning,
-                MessageBoxDefaultButton.Button2
-            ).ToString();
+            string delete = MessageBox.Show(
+                 "Are you sure you want to delete this whole workout?",
+                 "Warning",
+                 MessageBoxButtons.YesNo,
+                 MessageBoxIcon.Warning,
+                 MessageBoxDefaultButton.Button2
+             ).ToString();
+
             if (delete == "Yes")
             {
-                //Exit without saving, dump exercise data
+                Close();//Exit without saving, dump exercise data
+           
             }
         }
 
@@ -35,9 +43,10 @@ namespace WorkoutTracker
                 MessageBoxDefaultButton.Button2
                 ).ToString();
             if (finished == "Yes")
-            {                
-                //Generate new window with table of all exercises from the workout
-                //write data to DB
+            {
+                WorkoutSummary summary = new WorkoutSummary(headExercise, Account);
+                summary.Show();
+                Close(); //sends data to summary and then closes this form
             }
         }
 
@@ -150,22 +159,134 @@ namespace WorkoutTracker
 
         }
 
-        
-
         private void nextButton_Click(object sender, EventArgs e)
         {
-            //This is a temporary hack
-            if (value4.Visible)
-                removeField4_Click(sender, e);
-            if (value3.Visible)
-                removeField3_Click(sender, e);
-            if (value2.Visible)
-                removeField2_Click(sender, e);
-            if (value1.Visible)
-                removeField1_Click(sender, e);
+            //comboBox1.SelectedIndex = 0;
 
-            comboBox1.SelectedIndex = 0;
+            Exercise exercise = new Exercise();
+            exercise.setExerciseName(comboBox1.Text);
+
+            if (category1.Visible)
+            {
+                exercise.setChar(0, category1.Text);
+                exercise.setVal(0, value1.Text);
+            }
+            if (category2.Visible)
+            {
+                exercise.setChar(1, category2.Text);
+                exercise.setVal(1, value2.Text);
+            }
+
+            if (category3.Visible)
+            {
+                exercise.setChar(2, category3.Text);
+                exercise.setVal(2, value3.Text);
+            }
+
+            if (category4.Visible)
+            {
+                exercise.setChar(3, category4.Text);
+                exercise.setVal(3, value4.Text);
+            }
+
+            headExercise.SetCurrentExercise(exercise);
+
+            if (headExercise.GetCurrentExercise().GetNextNode() == null)
+            {
+                headExercise.AddToCurrentNext(new Exercise());
+            }
+            headExercise.MoveNextNode();
+            ReadExercise();
+        }
+
+        private void ReadExercise()
+        {
+            comboBox1.Text = headExercise.GetCurrentExercise().getExerciseName();
+            String temp = headExercise.GetCurrentExercise().getChar(0);
+
+            if (temp == null)
+            {
+                temp = "";
+                addField1.Visible = true;
+                removeField1.Visible = false;
+                addField2.Visible = false;
+                category1.Visible = false;
+                value1.Visible = false;
+            }
+            else
+            {
+                addField1.Visible = false;
+                removeField1.Visible = true;
+                addField2.Visible = true;
+                category1.Visible = true;
+                value1.Visible = true;
+            }
+            category1.Text = temp;
+            value1.Text = headExercise.GetCurrentExercise().getVal(0);
+
+            temp = headExercise.GetCurrentExercise().getChar(1);
+
+            if (temp == null)
+            {
+                temp = "";
+                removeField2.Visible = false;
+                addField3.Visible = false;
+                category2.Visible = false;
+                value2.Visible = false;
+            }
+            else
+            {
+                removeField1.Visible = false;
+                addField2.Visible = false;
+                removeField2.Visible = true;
+                addField3.Visible = true;
+                category2.Visible = true;
+                value2.Visible = true;
+            }
+            category2.Text = temp;
+            value2.Text = headExercise.GetCurrentExercise().getVal(1);
+
+            temp = headExercise.GetCurrentExercise().getChar(2);
+
+            if (temp == null)
+            {
+                temp = "";
+                removeField3.Visible = false;
+                addField4.Visible = false;
+                category3.Visible = false;
+                value3.Visible = false;
+            }
+            else
+            {
+                removeField2.Visible = false;
+                addField3.Visible = false;
+                removeField3.Visible = true;
+                addField4.Visible = true;
+                category3.Visible = true;
+                value3.Visible = true;
+            }
+            category3.Text = temp;
+            value3.Text = headExercise.GetCurrentExercise().getVal(2);
             
+            temp = headExercise.GetCurrentExercise().getChar(3);
+
+            if (temp == null)
+            {
+                temp = "";
+                removeField4.Visible = false;
+                category4.Visible = false;
+                value4.Visible = false;
+            }
+            else
+            {
+                removeField3.Visible = false;
+                addField4.Visible = false;
+                removeField4.Visible = true;
+                category4.Visible = true;
+                value4.Visible = true;
+            }
+            category4.Text = temp;
+            value4.Text = headExercise.GetCurrentExercise().getVal(3);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -190,6 +311,51 @@ namespace WorkoutTracker
                 
                 exitToolStripMenuItem.Text = "Log In";
             }
+        }
+
+        private void workoutTrackerForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            //comboBox1.SelectedIndex = 0;
+
+            Exercise exercise = new Exercise();
+            exercise.setExerciseName(comboBox1.Text);
+
+            if (category1.Visible)
+            {
+                exercise.setChar(0, category1.Text);
+                exercise.setVal(0, value1.Text);
+            }
+            if (category2.Visible)
+            {
+                exercise.setChar(1, category2.Text);
+                exercise.setVal(1, value2.Text);
+            }
+
+            if (category3.Visible)
+            {
+                exercise.setChar(2, category3.Text);
+                exercise.setVal(2, value3.Text);
+            }
+
+            if (category4.Visible)
+            {
+                exercise.setChar(3, category4.Text);
+                exercise.setVal(3, value4.Text);
+            }
+
+            headExercise.SetCurrentExercise(exercise);
+
+            if (headExercise.GetCurrentExercise().GetPrevNode() == null)
+            {
+                headExercise.AddToCurrentPrev(new Exercise());
+            }
+            headExercise.MovePrevNode();
+            ReadExercise();
         }
     }
 }

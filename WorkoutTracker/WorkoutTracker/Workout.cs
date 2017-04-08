@@ -6,20 +6,39 @@ using System.Threading.Tasks;
 
 namespace WorkoutTracker
 {
-    class Workout
+    public class Workout
     {
-        private Exercise[] Exercises;
-        private DateTime Date;
-        private String UserID;
+        public DateTime Date;
+        public String UserID;
+        public Exercise FirstExercise;
 
         public Workout()
         {
-
+            FirstExercise = new Exercise();
+            Date = DateTime.Now;
         }
 
-        public object getSummary(Exercise exercise)
+        public Workout(Exercise firstExercise)
         {
-            return new object();
+            FirstExercise = firstExercise;
+            Date = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Gets exercise information
+        /// Returns the Name and Characteristics.
+        /// </summary>
+        /// <returns></returns>
+        public List<Exercise> GetSummary()
+        {
+            FirstExercise.MoveToFirstNode();
+            List<Exercise> summary = new List<Exercise>();
+            //while (FirstExercise.GetCurrentExercise())
+            //{
+            //    summary.Add(GetCurrentExercise());
+            //    MoveNextNode();
+            //}
+            return summary;
         }
     }
 }
