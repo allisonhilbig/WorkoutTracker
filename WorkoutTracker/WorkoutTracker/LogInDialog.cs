@@ -32,7 +32,7 @@ namespace WorkoutTracker
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            NewUser newuser = new NewUser();
+            NewUser newuser = new NewUser(Account);
             newuser.Show();
         }
         
@@ -60,10 +60,6 @@ namespace WorkoutTracker
                 mainmenu.ChangeAccount(Account);
             }
         }
-
-        private void setUsernameAndPassword(String name, String pwd)
-        {
-
-        }
+        
     }
 }

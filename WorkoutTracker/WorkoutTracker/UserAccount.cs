@@ -156,5 +156,26 @@ namespace WorkoutTracker
         {
 
         }
+
+        public void newUser(String username, String password)
+        {
+            Con = new SqlConnection();
+            Con.ConnectionString = Constants.DBDATASOURCE + Constants.DBATTACHDBFILENAME
+                + Constants.DBINTEGRATEDSECURITY + Constants.DBCONNECTTIMEOUT;
+            Con.Open();
+
+            SqlCommand comm;
+            comm = new SqlCommand("INSERT INTO [Credentials] (Username, Password) VALUES (@username, @password)", Con);
+            comm.Parameters.AddWithValue("username", username);
+            comm.Parameters.AddWithValue("password", password);
+            try
+            {
+                comm.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                ;
+            }
+        }
     }
 }
