@@ -130,8 +130,6 @@ namespace WorkoutTracker
             this.MinimumSize = new System.Drawing.Size(442, 465);
             this.Name = "MainMenu";
             this.Text = "Workout Tracker";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
-            this.Load += new System.EventHandler(this.MainMenu_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);

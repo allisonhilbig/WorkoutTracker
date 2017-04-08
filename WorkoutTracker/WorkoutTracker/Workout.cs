@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkoutTracker
 {
-    class Workout
+    public class Workout
     {
         public DateTime Date;
         public String UserID;

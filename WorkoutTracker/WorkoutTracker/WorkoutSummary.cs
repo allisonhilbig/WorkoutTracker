@@ -8,16 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WorkoutTracker
 {
     public partial class WorkoutSummary : Form
     {
-        public WorkoutSummary(Exercise firstExercise)
+        private Exercise headExercise;
+        private UserAccount Account;
+
+        public WorkoutSummary(Exercise firstExercise, UserAccount account)
         {
             InitializeComponent();
-            Exercise headExercise = firstExercise;
-
+            headExercise = firstExercise;
+            Account = account;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -29,11 +33,10 @@ namespace WorkoutTracker
         {
             //find a pointer for the first node in the workout
             //while there is a value in the node:
-                // summaryTable.RowCount++;
-                //populate the row with labels (http://stackoverflow.com/questions/7170673/how-can-i-create-labels-inside-a-for-loop)
-                //if there are values in the char/val fields
-                //print the values to their labels
-
+            // summaryTable.RowCount++;
+            //populate the row with labels (http://stackoverflow.com/questions/7170673/how-can-i-create-labels-inside-a-for-loop)
+            //if there are values in the char/val fields
+            //print the values to their labels
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,10 +68,14 @@ namespace WorkoutTracker
                         //newLine = string.Format("{0},{1}", "Characteristic", "Value");
                         //csv.AppendLine(newLine);
 
-                
-
                 File.WriteAllText(saveFileDialog1.FileName, csv.ToString());
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Account.newWorkout("", headExercise);
+            Close();
         }
     }
 }

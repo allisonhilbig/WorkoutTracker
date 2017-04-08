@@ -49,18 +49,6 @@ namespace WorkoutTracker
         {
             SqlCommand comm;
 
-            comm = new SqlCommand("SELECT Id FROM Credentials", con);
-            try
-            {
-                comm.ExecuteNonQuery();
-                
-            }
-            catch (SqlException f)
-            {
-                ;
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if(passwardMatch == true)
@@ -116,22 +104,6 @@ namespace WorkoutTracker
             }
         }
 
-        private int addDataUsrPswd (String name, String pwd)
-        {
-
-            SqlCommand comm;
-
-            comm = new SqlCommand("INSERT INTO [Credentials] VALUES (3, Joshua, pwd)", con);
-            try
-            {
-                comm.ExecuteNonQuery();
-                return 0;
-            }
-            catch (SqlException f)
-            {
-                return -1;
-            }
-
-        }
+        
     }
 }
