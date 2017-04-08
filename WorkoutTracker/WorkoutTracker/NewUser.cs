@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WorkoutTracker
 {
     public partial class NewUser : Form
     {
-     
+        private SqlConnection con;
         private Boolean passwardMatch = false;
         String[] userNameAndPassword = new String[4];
          
@@ -24,6 +25,11 @@ namespace WorkoutTracker
 
         private void NewUser_Load(object sender, EventArgs e)
         {
+            con = new SqlConnection();
+            con.ConnectionString = Constants.DBDATASOURCE + Constants.DBATTACHDBFILENAME
+                + Constants.DBINTEGRATEDSECURITY + Constants.DBCONNECTTIMEOUT;
+            con.Open();
+
             // Create the ToolTip and associate with the Form container.
             ToolTip toolTip1 = new ToolTip();
 
@@ -41,17 +47,16 @@ namespace WorkoutTracker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-           
             if(passwardMatch == true)
             {
                 textBox4.Clear();
                 textBox3.Clear();
                 textBox1.Clear();
                 textBox2.Clear();
+                addDataUsrPswd(textBox4.Text, textBox3.Text);
                 //pass on the username && pwd to database
+                this.Close();
             }
-            
         }
 
         //Username textbox
@@ -95,5 +100,22 @@ namespace WorkoutTracker
             }
         }
 
+        private void addDataUsrPswd (String name, String pwd)
+        {
+
+            SqlCommand comm;
+
+            comm = new SqlCommand("INSERT INTO [Credentials] VALUES (@i,@i)", con);
+            comm.Parameters.AddWithValue(name, pwd);
+            try
+            {
+                comm.ExecuteNonQuery();
+            }
+            catch (SqlException f)
+            {
+                ;
+            }
+
+        }
     }
 }

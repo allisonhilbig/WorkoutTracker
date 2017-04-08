@@ -44,7 +44,6 @@ namespace WorkoutTracker
             SqlDataReader dataReader;
             SqlCommand comm;
 
-            String username, password;
             username = textBox1.Text;
             password = textBox2.Text;
             
@@ -59,7 +58,7 @@ namespace WorkoutTracker
                 {
                     MessageBox.Show("Username and Password do not exist.\nPlease create a new Account.");
                     Close();
-                    LogInDialog logInForm = new LogInDialog();
+                    LogInDialog logInForm = new LogInDialog(mainmenu);
                     logInForm.Show();
                 }
                 else
@@ -69,7 +68,7 @@ namespace WorkoutTracker
             } catch 
             {
                 Close();
-                LogInDialog logInForm = new LogInDialog();
+                LogInDialog logInForm = new LogInDialog(mainmenu);
                 logInForm.Show();
             }
                 
@@ -90,6 +89,11 @@ namespace WorkoutTracker
                 con.Close();
             mainmenu.setUsernameLabel(textBox1.Text);
             mainmenu.setButtonsBackgroundColor();
+        }
+
+        private void setUsernameAndPassword(String name, String pwd)
+        {
+
         }
     }
 }
