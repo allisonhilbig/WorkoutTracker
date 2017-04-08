@@ -15,6 +15,7 @@ namespace WorkoutTracker
     public partial class NewUser : Form
     {
         private SqlConnection con;
+        private int userIdNumber = 0;
         private Boolean passwardMatch = false;
         String[] userNameAndPassword = new String[4];
          
@@ -43,6 +44,21 @@ namespace WorkoutTracker
             // Set up the ToolTip text for the Button and Checkbox.
             toolTip1.SetToolTip(this.label5, "Passwords do not match");
             
+        }
+        private void getUserIdNumber()
+        {
+            SqlCommand comm;
+
+            comm = new SqlCommand("SELECT Id FROM Credentials", con);
+            try
+            {
+                comm.ExecuteNonQuery();
+                
+            }
+            catch (SqlException f)
+            {
+                ;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,20 +116,20 @@ namespace WorkoutTracker
             }
         }
 
-        private void addDataUsrPswd (String name, String pwd)
+        private int addDataUsrPswd (String name, String pwd)
         {
 
             SqlCommand comm;
 
-            comm = new SqlCommand("INSERT INTO [Credentials] VALUES (@i,@i)", con);
-            comm.Parameters.AddWithValue(name, pwd);
+            comm = new SqlCommand("INSERT INTO [Credentials] VALUES (3, Joshua, pwd)", con);
             try
             {
                 comm.ExecuteNonQuery();
+                return 0;
             }
             catch (SqlException f)
             {
-                ;
+                return -1;
             }
 
         }
