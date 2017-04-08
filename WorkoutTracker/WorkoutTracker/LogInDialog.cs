@@ -13,87 +13,53 @@ namespace WorkoutTracker
 {
     public partial class LogInDialog : Form
     {
-        private SqlConnection con;
-        private static String username = "", password = "";
+        private UserAccount Account;
+        private bool LoggedIn = false;
         MainMenu mainmenu = null;
 
         public LogInDialog()
         {
             InitializeComponent();
+            Account = new UserAccount();
         }
 
-        public LogInDialog(MainMenu mainmenu)
+        public LogInDialog(MainMenu mainmenu, UserAccount account)
         {
             InitializeComponent();
             this.mainmenu = mainmenu;
+            Account = account;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            NewUser newuser = new NewUser();
+            NewUser newuser = new NewUser(Account);
             newuser.Show();
         }
-
-        public static String getUsername()
-        {
-            return username;
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlDataReader dataReader;
-            SqlCommand comm;
-
-            username = textBox1.Text;
-            password = textBox2.Text;
-            
-            comm = new SqlCommand("SELECT Id FROM [Credentials] WHERE Username = @username AND Password = @password", con);
-            comm.Parameters.Add(new SqlParameter("Username", username));
-            comm.Parameters.Add(new SqlParameter("Password", password));
-            
-            try
+            if (!Account.checkPassword(textBox1.Text, textBox2.Text))
             {
-                dataReader = comm.ExecuteReader();
-                if (!dataReader.HasRows)
-                {
-                    MessageBox.Show("Username and Password do not exist.\nPlease create a new Account.");
-                    Close();
-                    LogInDialog logInForm = new LogInDialog(mainmenu);
-                    logInForm.Show();
-                }
-                else
-                {
-                    Close();
-                }
-            } catch 
-            {
+                LoggedIn = false;
+                MessageBox.Show("Username and Password do not exist.\nPlease create a new Account.");
                 Close();
-                LogInDialog logInForm = new LogInDialog(mainmenu);
+                LogInDialog logInForm = new LogInDialog(mainmenu, Account);
                 logInForm.Show();
             }
-                
-            
+            else
+            {
+                LoggedIn = true;
+                Close();
+            }
         }
-
-        private void LogInDialog_Load(object sender, EventArgs e)
+        
+        private void LogInDialog_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            con = new SqlConnection();
-            con.ConnectionString = Constants.DBDATASOURCE + Constants.DBATTACHDBFILENAME
-                + Constants.DBINTEGRATEDSECURITY + Constants.DBCONNECTTIMEOUT;
-            con.Open();
+            if (LoggedIn)
+            {
+                mainmenu.ChangeAccount(Account);
+            }
         }
-
-        private void LogInDialog_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (con != null)
-                con.Close();
-            mainmenu.setUsernameLabel(textBox1.Text);
-            mainmenu.setButtonsBackgroundColor();
-        }
-
-        private void setUsernameAndPassword(String name, String pwd)
-        {
-
-        }
+        
     }
 }

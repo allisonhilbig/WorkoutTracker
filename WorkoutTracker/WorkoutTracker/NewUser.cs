@@ -14,22 +14,20 @@ namespace WorkoutTracker
 {
     public partial class NewUser : Form
     {
-        private SqlConnection con;
+        private int userIdNumber = 0;
         private Boolean passwardMatch = false;
         String[] userNameAndPassword = new String[4];
+        private UserAccount Account;
          
-        public NewUser()
+        public NewUser(UserAccount account)
         {
             InitializeComponent();
+            this.Account = account;
         }
 
         private void NewUser_Load(object sender, EventArgs e)
         {
-            con = new SqlConnection();
-            con.ConnectionString = Constants.DBDATASOURCE + Constants.DBATTACHDBFILENAME
-                + Constants.DBINTEGRATEDSECURITY + Constants.DBCONNECTTIMEOUT;
-            con.Open();
-
+        
             // Create the ToolTip and associate with the Form container.
             ToolTip toolTip1 = new ToolTip();
 
@@ -44,16 +42,21 @@ namespace WorkoutTracker
             toolTip1.SetToolTip(this.label5, "Passwords do not match");
             
         }
+        private void getUserIdNumber()
+        {
+            // SqlCommand comm;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if(passwardMatch == true)
             {
+                Account.newUser(textBox4.Text, textBox3.Text);
                 textBox4.Clear();
                 textBox3.Clear();
                 textBox1.Clear();
                 textBox2.Clear();
-                addDataUsrPswd(textBox4.Text, textBox3.Text);
+               // addDataUsrPswd(textBox4.Text, textBox3.Text);
                 //pass on the username && pwd to database
                 this.Close();
             }
@@ -100,22 +103,6 @@ namespace WorkoutTracker
             }
         }
 
-        private void addDataUsrPswd (String name, String pwd)
-        {
-
-            SqlCommand comm;
-
-            comm = new SqlCommand("INSERT INTO [Credentials] VALUES (@i,@i)", con);
-            comm.Parameters.AddWithValue(name, pwd);
-            try
-            {
-                comm.ExecuteNonQuery();
-            }
-            catch (SqlException f)
-            {
-                ;
-            }
-
-        }
+        
     }
 }

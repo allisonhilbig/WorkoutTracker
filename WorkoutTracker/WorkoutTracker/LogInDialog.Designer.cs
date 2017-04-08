@@ -124,8 +124,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LogInDialog";
             this.Text = "Log In";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogInDialog_FormClosing);
-            this.Load += new System.EventHandler(this.LogInDialog_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogInDialog_FormClosing_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
