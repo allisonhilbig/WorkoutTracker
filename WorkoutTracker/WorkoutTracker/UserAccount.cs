@@ -128,16 +128,16 @@ namespace WorkoutTracker
             while (headExercise.GetCurrentExercise() != null)
             {
                 String characteristic = headExercise.GetCurrentExercise().getChar(0);
-                comm = new SqlCommand("INSERT INTO [Exercises] (Id_Work, Characteristic1, Characteristic2, Characteristic3, Characteristic4, Value1, Value2, Value3, Value4, Name) VALUES (@Workout,@Characteristic1,@Value1,@Characteristic2,@Value2,@Characteristic3,@Value3,@Characteristic4,@Value4,@Name)", Con);
+                comm = new SqlCommand("INSERT INTO [Exercises] (Id_Work, Characteristic1, Characteristic2, Characteristic3, Characteristic4, Value1, Value2, Value3, Value4, Name) VALUES (@Workout,@Characteristic1,@Characteristic2,@Characteristic3,@Characteristic4,@Value1,@Value2,@Value3,@Value4,@Name)", Con);
                 comm.Parameters.AddWithValue("Workout", workout);
                 comm.Parameters.AddWithValue("Characteristic1", headExercise.GetCurrentExercise().getChar(0));
                 comm.Parameters.AddWithValue("Characteristic2", headExercise.GetCurrentExercise().getChar(1));
                 comm.Parameters.AddWithValue("Characteristic3", headExercise.GetCurrentExercise().getChar(2));
                 comm.Parameters.AddWithValue("Characteristic4", headExercise.GetCurrentExercise().getChar(3));
-                comm.Parameters.AddWithValue("Value0", headExercise.GetCurrentExercise().getVal(0));
-                comm.Parameters.AddWithValue("Value1", headExercise.GetCurrentExercise().getVal(1));
-                comm.Parameters.AddWithValue("Value2", headExercise.GetCurrentExercise().getVal(2));
-                comm.Parameters.AddWithValue("Value3", headExercise.GetCurrentExercise().getVal(3));
+                comm.Parameters.AddWithValue("Value1", headExercise.GetCurrentExercise().getVal(0));
+                comm.Parameters.AddWithValue("Value2", headExercise.GetCurrentExercise().getVal(1));
+                comm.Parameters.AddWithValue("Value3", headExercise.GetCurrentExercise().getVal(2));
+                comm.Parameters.AddWithValue("Value4", headExercise.GetCurrentExercise().getVal(3));
                 comm.Parameters.AddWithValue("Name", headExercise.GetCurrentExercise().getExerciseName());
                 try
                 {
