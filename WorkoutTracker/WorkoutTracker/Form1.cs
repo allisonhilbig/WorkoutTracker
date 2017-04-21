@@ -7,15 +7,13 @@ namespace WorkoutTracker
     public partial class workoutTrackerForm : Form
     {
         private Exercise headExercise;
-        private SqlConnection con;
+        private UserAccount Account;
 
-        public workoutTrackerForm()
+        public workoutTrackerForm(UserAccount account)
         {
             InitializeComponent();
             headExercise = new Exercise();
-
-            //MainMenu mainform = new MainMenu();
-            //mainform.Show();
+            Account = account;
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -46,7 +44,7 @@ namespace WorkoutTracker
                 ).ToString();
             if (finished == "Yes")
             {
-                WorkoutSummary summary = new WorkoutSummary(headExercise);
+                WorkoutSummary summary = new WorkoutSummary(headExercise, Account);
                 summary.Show();
                 Close(); //sends data to summary and then closes this form
             }

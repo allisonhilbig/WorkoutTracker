@@ -8,12 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace WorkoutTracker
 {
     public partial class WorkoutSummary : Form
     {
-        Exercise headExercise;
+        private Exercise headExercise;
+        private UserAccount Account;
+        
         public WorkoutSummary(Exercise firstExercise)
         {
             InitializeComponent();
@@ -24,6 +27,13 @@ namespace WorkoutTracker
         {
             InitializeComponent();
             headExercise = new Exercise();
+        }
+
+        public WorkoutSummary(Exercise firstExercise, UserAccount account)
+        {
+            InitializeComponent();
+            headExercise = firstExercise;
+            Account = account;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -96,16 +106,15 @@ namespace WorkoutTracker
                         //newLine = string.Format("{0},{1}", "Characteristic", "Value");
                         //csv.AppendLine(newLine);
 
-                
-
                 File.WriteAllText(saveFileDialog1.FileName, csv.ToString());
             }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            this.Close();
-            //export data to db
+            Account.newWorkout("", headExercise);
+            Close();
+
         }
     }
 }

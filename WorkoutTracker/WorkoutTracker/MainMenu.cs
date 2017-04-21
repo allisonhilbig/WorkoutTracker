@@ -13,15 +13,11 @@ namespace WorkoutTracker
 {
     public partial class MainMenu : Form
     {
-        private SqlConnection con;
-
+        private UserAccount Account;
         public MainMenu()
         {
             InitializeComponent();
-            if (this.Focused)
-            {
-                isLoggedIn(LogInDialog.getUsername());
-            }
+            Account = new UserAccount();
         }
 
         public void isLoggedIn(String username)
@@ -44,76 +40,40 @@ namespace WorkoutTracker
 
         private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(con != null)
-                con.Close();
+            if(Account != null)
+                Account.CloseConnection();
         }
 
         private void loginbutton_Click(object sender, EventArgs e)
         {
-            LogInDialog logInForm = new LogInDialog(this);
+            LogInDialog logInForm = new LogInDialog(this, Account);
             logInForm.Show();
         }
 
         private void logworkoutButton_Click(object sender, EventArgs e)
         {
-            workoutTrackerForm form = new workoutTrackerForm();
+            workoutTrackerForm form = new workoutTrackerForm(Account);
             form.Show();
         }
-
-        private void MainMenu_Load_1(object sender, EventArgs e)
-        {
-            con = new SqlConnection();
-            con.ConnectionString = Constants.DBDATASOURCE + Constants.DBATTACHDBFILENAME
-                + Constants.DBINTEGRATEDSECURITY + Constants.DBCONNECTTIMEOUT;
-            con.Open();
-
-
-            /*
-             * Temp Examples of SQL Commands and Queries
-             */
-            //SqlDataReader dataReader;
-            //SqlCommand comm;
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    comm = new SqlCommand("INSERT INTO [Table] VALUES (@i,@i)", con);
-            //    comm.Parameters.AddWithValue("i", i);
-            //    try
-            //    {
-            //        comm.ExecuteNonQuery();
-            //    }
-            //    catch (SqlException f)
-            //    {
-            //        ;
-            //    }
-            //}
-
-            //comm = new SqlCommand("SELECT temp FROM [Table]", con);
-            //try
-            //{
-            //    dataReader = comm.ExecuteReader();
-
-            //    while (dataReader.Read())
-            //    {
-            //        Console.Write(dataReader.GetValue(0));
-            //    }
-            //}
-            //catch (SqlException f)
-            //{
-            //    ;
-            //}
-        }
+        
         public void setUsernameLabel(String username)
         {
-            usernameLabel.Text = username;
+            
         }
+
         public void setButtonsBackgroundColor()
         {
+            
+        }
+
+        internal void ChangeAccount(UserAccount account)
+        {
+            Account = account;
+            usernameLabel.Text = Account.GetName();
             logworkoutButton.UseVisualStyleBackColor = true;
             logworkoutButton.Enabled = true;
             exportButton.UseVisualStyleBackColor = true;
             exportButton.Enabled = true;
         }
-
     }
 }
