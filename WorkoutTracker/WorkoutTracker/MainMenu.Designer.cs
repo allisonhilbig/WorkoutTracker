@@ -59,7 +59,7 @@ namespace WorkoutTracker
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(6, 28);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(410, 134);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -72,7 +72,7 @@ namespace WorkoutTracker
             this.logworkoutButton.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.logworkoutButton.Enabled = false;
             this.logworkoutButton.Location = new System.Drawing.Point(0, 237);
-            this.logworkoutButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logworkoutButton.Margin = new System.Windows.Forms.Padding(2);
             this.logworkoutButton.Name = "logworkoutButton";
             this.logworkoutButton.Size = new System.Drawing.Size(422, 56);
             this.logworkoutButton.TabIndex = 3;
@@ -83,7 +83,7 @@ namespace WorkoutTracker
             // exitButton
             // 
             this.exitButton.Location = new System.Drawing.Point(0, 358);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(2);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(422, 56);
             this.exitButton.TabIndex = 5;
@@ -105,7 +105,7 @@ namespace WorkoutTracker
             // loginbutton
             // 
             this.loginbutton.Location = new System.Drawing.Point(0, 177);
-            this.loginbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.loginbutton.Margin = new System.Windows.Forms.Padding(2);
             this.loginbutton.Name = "loginbutton";
             this.loginbutton.Size = new System.Drawing.Size(422, 56);
             this.loginbutton.TabIndex = 8;
@@ -118,7 +118,7 @@ namespace WorkoutTracker
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(426, 426);
+            this.ClientSize = new System.Drawing.Size(426, 427);
             this.Controls.Add(this.loginbutton);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.exitButton);
@@ -126,7 +126,7 @@ namespace WorkoutTracker
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.exportButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.MinimumSize = new System.Drawing.Size(442, 465);
             this.Name = "MainMenu";
             this.Text = "Workout Tracker";

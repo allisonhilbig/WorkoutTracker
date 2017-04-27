@@ -43,7 +43,7 @@ namespace WorkoutTracker
 
         private void WorkoutSummary_Load(object sender, EventArgs e)
         {
-           
+            headExercise.MoveToFirstNode();
             Exercise node = headExercise;
             List<Label> labels = new List<Label>();
             do {
@@ -54,27 +54,16 @@ namespace WorkoutTracker
                     var temp = new Label();
                     summaryTable.Controls.Add(temp, colNum, summaryTable.RowCount - 1);
                     if (colNum == 0)
-                        temp.Text = node.getExerciseName();
+                        temp.Text = node.GetCurrentExercise().getExerciseName();
                     else if (colNum % 2 == 1)
-                        temp.Text = node.getCharacteristics()[((colNum - 1) / 2)];
+                        temp.Text = node.GetCurrentExercise().getCharacteristics()[((colNum - 1) / 2)];
                     else
-                        temp.Text = node.getValues()[(colNum / 2)-1];
+                        temp.Text = node.GetCurrentExercise().getValues()[(colNum / 2)-1];
                     temp.Show();
                     labels.Add(temp);
                 }
-
-               
-          
-                node = node.GetNextNode();
-            } while (node != headExercise && node != null);
-
-            //find a pointer for the first node in the workout
-            //while there is a value in the node:
-                // summaryTable.RowCount++;
-                //populate the row with labels (http://stackoverflow.com/questions/7170673/how-can-i-create-labels-inside-a-for-loop)
-                //if there are values in the char/val fields
-                //print the values to their labels
-            
+                node.MoveNextNode();
+            } while (node.GetCurrentExercise() != null);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -88,23 +77,34 @@ namespace WorkoutTracker
             // If the file name is not an empty string open it for saving.
             if (saveFileDialog1.FileName != "")
             {
+                headExercise.MoveToFirstNode();
+                Exercise node = headExercise;
                 var csv = new StringBuilder();
+                var newLine = string.Format("{0}", Account.GetName());
 
-                var newLine = string.Format("{0},{1},{2}", "Name of User","","Workout Name");
                 csv.AppendLine(newLine);
-                newLine = string.Format("{0}", "Description of Workout");
-                csv.AppendLine(newLine);
-                //For each exercise in workout
-                newLine = "";
-                csv.AppendLine(newLine);
-                //Writes the data into the grid
-                    newLine = string.Format("{0},{1}","Exercise", "Name of Exercise");
+                while (node.GetCurrentExercise() != null)
+                {
+                    //For each exercise in workout
+                    newLine = "";
                     csv.AppendLine(newLine);
-                    newLine = string.Format("{0},{1}", "Characteristic", "Value");
+                    newLine = string.Format("{0},{1}", "Exercise", node.GetCurrentExercise().getExerciseName());
                     csv.AppendLine(newLine);
-                    //for each characteristic not empty in the exercise
+                    String temp, temp2;
+                    for (int colNum = 0; colNum < 4; colNum++)
+                    {
+                        //Writes the data into the grid
+                        temp = node.GetCurrentExercise().getValues()[colNum];
+                        temp2 = node.GetCurrentExercise().getCharacteristics()[colNum];
+                        newLine = string.Format("{0},{1}", temp, temp2);
+                        if (temp != null || temp2 != null)
+                            csv.AppendLine(newLine);
+                        //for each characteristic not empty in the exercise
                         //newLine = string.Format("{0},{1}", "Characteristic", "Value");
                         //csv.AppendLine(newLine);
+                    }
+                    node.MoveNextNode();
+                }
 
                 File.WriteAllText(saveFileDialog1.FileName, csv.ToString());
             }
