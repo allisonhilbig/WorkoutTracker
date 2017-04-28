@@ -29,7 +29,6 @@ namespace WorkoutTracker
             if (delete == "Yes")
             {
                 Close();//Exit without saving, dump exercise data
-           
             }
         }
 
@@ -44,6 +43,7 @@ namespace WorkoutTracker
                 ).ToString();
             if (finished == "Yes")
             {
+                nextButton_Click(sender, e);
                 WorkoutSummary summary = new WorkoutSummary(headExercise, Account);
                 summary.Show();
                 Close(); //sends data to summary and then closes this form
